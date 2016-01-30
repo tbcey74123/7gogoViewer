@@ -89,13 +89,6 @@ void MessageBox::initMemberName(const QString &name) {
     layout->addWidget(memberName, 0, 0);
 }
 
-void MessageBox::paintEvent(QPaintEvent *) {
-    QStyleOption opt;
-    opt.init(this);
-    QPainter p(this);
-    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
-}
-
 //Getters and Setters
 void MessageBox::setMessageNum(const int messageNum) { this->messageNum = messageNum; }
 int MessageBox::getMessageNum() { return messageNum; }

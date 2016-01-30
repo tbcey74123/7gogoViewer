@@ -69,7 +69,6 @@ void Image::initWithUrl(QString url) {
     conn = QObject::connect(nam, &QNetworkAccessManager::finished, this, &Image::ImageDownloadFinished);
 
     nam->get(QNetworkRequest(QUrl(url)));
-
 }
 
 //Getters and Setters

@@ -36,6 +36,7 @@ void ContentBox::addMessage(MessageBox *messageBox) {
 }
 
 //Getters and Setters
+Window *ContentBox::getWindow() { return window; }
 void ContentBox::setWidth(const int &w) {
 
     setFixedWidth(w);
@@ -46,6 +47,10 @@ void ContentBox::expandHeight(MessageBox *box) {
     box->setVisible(true);
     setFixedHeight(height() + box->size().height() + vBox->spacing());
 
+}
+
+void ContentBox::test() {
+    qDebug() << "test";
 }
 
 

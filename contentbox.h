@@ -14,19 +14,20 @@ class ContentBox : public QWidget {
     Q_OBJECT
 
 
+    Window *window;
 
     int messageNumber;
     QVBoxLayout *vBox;
 
 public:
 
-    Window *window;
 
     explicit ContentBox(QWidget *parent = 0);
 
 
     void addMessage(MessageBox *messageBox);
 
+    Window *getWindow();
     void setWidth(const int &w);
 
 private:
@@ -34,6 +35,7 @@ private:
 
 public slots:
     void expandHeight(MessageBox *box);
+    void test();
 
 };
 

@@ -1,6 +1,11 @@
 #include "window.h"
+#include "graphicviewer.h"
 #include "contentbox.h"
+
 #include "messagebox.h"
+
+#include <QApplication>
+#include <QDesktopWidget>
 
 #include <QDebug>
 #include <QFile>
@@ -39,6 +44,7 @@ void Window::init() {
 
     initControlPanel();
     initContentBox();
+    initGraphicViewer();
 
     scroll = new QScrollArea;
     scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -47,8 +53,6 @@ void Window::init() {
     vBox->addWidget(controlPanel);
     vBox->addWidget(scroll);
 
-    scene = new QGraphicsScene;
-    view = new QGraphicsView(scene);
 
 }
 
@@ -61,7 +65,7 @@ void Window::initControlPanel() {
 
     int *test = new int;
     *test = 0;
-    \
+
     QObject::connect(button, &QPushButton::pressed, [=] {
 
         QJsonValue json[3];
@@ -104,6 +108,7 @@ void Window::initControlPanel() {
         json[2] = QJsonValue::fromVariant(QJsonDocument::fromJson(line.toUtf8()).toVariant());
 
         for(int i = 0; i < 3; i++) {
+            //qDebug() << json[i];
             MessageBox *messageBox = MessageBox::fromJson(json[i], contentBox);
             contentBox->addMessage(messageBox);
 /*
@@ -128,18 +133,16 @@ void Window::initContentBox() {
                                                                                                                        //set the width to the DEFAULT_WIDTH of the window
                                                                                                                        //substracting the left, right margins of the layout,                                                                                                                       //and the width of the scrolling bar.
 }
+void Window::initGraphicViewer() {
+    graphicViewer = new GraphicViewer(this);
 
-void Window::addGraphics(const QPixmap &map) {
-    qDebug() << "test1";
-    scene->removeItem(item);
-    item = new QGraphicsPixmapItem(map);
-    scene->addItem(item);
-    //view->resize(map.size());
-    view->show();
+    //graphicViewer->setMaxSize(QApplication::desktop()->screenGeometry().size());
+    graphicViewer->setMaxSize(QSize(800, 600));
 }
 
-//
-void Window::test() {
+//public slots
+void Window::addImage(const QPixmap &map) {
 
+    graphicViewer->addImage(map);
 }
 

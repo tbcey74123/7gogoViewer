@@ -41,7 +41,7 @@ void MessageBoxType5::initPost(const QJsonObject &post) {
     QJsonObject postBody = post["body"].toArray()[0].toObject();
     initRetalkFrom(postBody["post"].toObject()["talkName"].toString());
 
-    retalkContent = MessageBox::fromJson(postBody["post"].toObject());
+    retalkContent = MessageBox::fromJson(postBody["post"].toObject(), parentWidget());
 
     QObject::connect(retalkContent, &MessageBox::boxFinished, [=]() {
         layout->addWidget(retalkContent, 2, 0);
@@ -50,8 +50,6 @@ void MessageBoxType5::initPost(const QJsonObject &post) {
 
         emit boxFinished(this);
     });
-
-
 
 }
 

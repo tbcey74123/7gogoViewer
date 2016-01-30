@@ -20,7 +20,8 @@ SOURCES += \
     messageboxtype5.cpp \
     messageboxtype7.cpp \
     messageboxtype6.cpp \
-    messageboxtype8.cpp
+    messageboxtype8.cpp \
+    graphicviewer.cpp
 
 HEADERS += \
     messagebox.h \
@@ -35,7 +36,8 @@ HEADERS += \
     messageboxtype5.h \
     messageboxtype7.h \
     messageboxtype6.h \
-    messageboxtype8.h
+    messageboxtype8.h \
+    graphicviewer.h
 
 DISTFILES += \
     json.txt

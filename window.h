@@ -13,6 +13,9 @@ class QNetworkAccessManager;
 class QGraphicsScene;
 class QGraphicsView;
 class QGraphicsPixmapItem;
+class QPixmap;
+
+class GraphicViewer;
 
 class Window : public QWidget {
 
@@ -25,24 +28,20 @@ class Window : public QWidget {
     ContentBox *contentBox;
     QVBoxLayout *vBox;
 
-    QGraphicsScene *scene;
-    QGraphicsView *view;
-    QGraphicsPixmapItem *item;
-
-
+    GraphicViewer *graphicViewer;
 
 public:
     explicit Window(QWidget *parent = 0);
-
-    void addGraphics(const QPixmap &map);
-
-    void test();
 
 private:
     void init();
     void initControlPanel();
     void initContentBox();
+    void initGraphicViewer();
 
+
+public slots:
+    void addImage(const QPixmap &map);
 };
 
 #endif // WINDOW_H

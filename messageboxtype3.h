@@ -3,6 +3,8 @@
 
 #include "messagebox.h"
 
+class ContentBox;
+
 class QWidget;
 class QLabel;
 

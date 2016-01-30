@@ -50,7 +50,6 @@ private:
     void init(const QJsonValue &value);
     void initPost(const QJsonObject &post);
     void initMemberName(const QString &name);
-    void paintEvent(QPaintEvent *);
 
 signals:
     //void boxFinished();

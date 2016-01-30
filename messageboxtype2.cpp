@@ -41,11 +41,6 @@ void MessageBoxType2::init(const QJsonValue &value) {
             img->initWithUrl(obj["image"].toString());
         }
     }
-/*
-    QObject::connect(img->getThumbNail(), &ImageLabel::imagePressed, [=]() {
-       contentBox->window->addGraphics(*(img->getOriImg()->pixmap()));
-    });
-*/
 }
 
 void MessageBoxType2::initPost(const QJsonObject &post) {

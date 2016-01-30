@@ -20,11 +20,12 @@
 MessageBoxType3::MessageBoxType3(const QJsonValue &value, QWidget *parent) : MessageBoxType3(value.toObject()["posts"].toArray()[0].toObject(), parent){}
 MessageBoxType3::MessageBoxType3(const QJsonObject &post, QWidget *parent) : MessageBox(post, parent){
 
-    contentBox = dynamic_cast <ContentBox *>(parent);
+    contentBox = dynamic_cast <ContentBox *>(parentWidget());
     initPost(post);
 }
 
 void MessageBoxType3::init(const QJsonValue &value) {
+
 
     img = new Image;
     QObject::connect(img, &Image::ImageFinished, this, &MessageBoxType3::ImageInitFinished);
@@ -43,9 +44,6 @@ void MessageBoxType3::init(const QJsonValue &value) {
         }
     }
 
-    QObject::connect(img->getThumbnail(), &ImageLabel::imagePressed, [=]() {
-       contentBox->window->addGraphics(*(img->getOriImg()->pixmap()));
-    });
 }
 void MessageBoxType3::initPost(const QJsonObject &post) {
 
@@ -65,6 +63,9 @@ void MessageBoxType3::initPost(const QJsonObject &post) {
         }
     }
 
+    QObject::connect(img->getThumbnail(), &ImageLabel::imagePressed, [=]() {
+        contentBox->getWindow()->addImage(*(img->getOriImg()->pixmap()));
+    });
 }
 
 void MessageBoxType3::ImageInitFinished() {
